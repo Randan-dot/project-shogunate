@@ -9,13 +9,13 @@ importers:
   .:
     dependencies:
       '@capacitor/android':
-        specifier: ^6.1.2
+        specifier: ^6.2.2
         version: 6.2.2(@capacitor/core@6.2.2)
       '@capacitor/cli':
-        specifier: ^6.1.2
+        specifier: ^6.2.2
         version: 6.2.2
       '@capacitor/core':
-        specifier: ^6.1.2
+        specifier: ^6.2.2
         version: 6.2.2
       '@supabase/ssr':
         specifier: 0.5.1
