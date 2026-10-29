@@ -75,10 +75,9 @@ export default function ChatRoom({
   useEffect(() => {
     if (demo || !currentProfile) return;
     const supabase = createClient();
+    const profileId = currentProfile.id;
 
     async function markAllAsRead() {
-      if (!currentProfile) return;
-      const profileId = currentProfile.id;
       const unread = messages.filter((m) => m.sender_id !== profileId);
       for (const m of unread) {
         const readers = readMap[m.id] || [];
