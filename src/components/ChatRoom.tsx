@@ -49,10 +49,11 @@ export default function ChatRoom({
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (demo || !currentProfile) return;
+    if (demo) return;
     const supabase = createClient();
 
     async function loadReads() {
+      if (!currentProfile) return;
       const messageIds = messages.map((m) => m.id);
       if (messageIds.length === 0) return;
       const { data } = await supabase
@@ -76,12 +77,14 @@ export default function ChatRoom({
     const supabase = createClient();
 
     async function markAllAsRead() {
-      const unread = messages.filter((m) => m.sender_id !== currentProfile.id);
+      if (!currentProfile) return;
+      const profileId = currentProfile.id;
+      const unread = messages.filter((m) => m.sender_id !== profileId);
       for (const m of unread) {
         const readers = readMap[m.id] || [];
-        if (readers.includes(currentProfile.id)) continue;
+        if (readers.includes(profileId)) continue;
         await supabase.from("message_reads").upsert(
-          { message_id: m.id, user_id: currentProfile.id },
+          { message_id: m.id, user_id: profileId },
           { onConflict: "message_id,user_id", ignoreDuplicates: true }
         );
       }

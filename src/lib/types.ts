@@ -1,4 +1,4 @@
-export type UserRole = \"shogun\" | \"samurai\" | \"ronin\";
+export type UserRole = "shogun" | "samurai" | "ronin";
 
 export interface Profile {
   id: string;
@@ -73,7 +73,7 @@ export interface Moderation {
   id: string;
   target_id: string;
   actor_id: string;
-  action: \"ban\" | \"unban\" | \"mute\" | \"unmute\";
+  action: "ban" | "unban" | "mute" | "unmute";
   reason: string | null;
   expires_at: string | null;
   created_at: string;
