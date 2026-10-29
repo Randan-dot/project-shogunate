@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;500;600;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-sumi-950 text-washi-50 font-body antialiased;
+    background-image:
+      radial-gradient(circle at 20% 0%, rgba(212, 59, 42, 0.08), transparent 45%),
+      radial-gradient(circle at 80% 10%, rgba(247, 201, 211, 0.06), transparent 40%);
+    background-attachment: fixed;
+  }
+
+  ::selection {
+    background-color: rgba(212, 59, 42, 0.5);
+    color: #faf6ee;
+  }
+
+  /* Thin vermillion scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #171422;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #3a3152;
+    border-radius: 9999px;
+    border: 2px solid #171422;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #d43b2a;
+  }
+}
+
+@layer components {
+  .seigaiha {
+    background-image: radial-gradient(
+        circle at 50% 50%,
+        rgba(250, 246, 238, 0.035) 0 12px,
+        transparent 12px 100%
+      );
+    background-size: 56px 56px;
+  }
+
+  .card {
+    @apply rounded-2xl border border-washi-50/10 bg-sumi-900/80 shadow-lg shadow-black/30 backdrop-blur;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+  .btn-primary {
+    @apply btn bg-torii text-washi-50 hover:bg-torii-400;
+  }
+
+  .btn-ghost {
+    @apply btn border border-washi-50/15 bg-transparent text-washi-100 hover:border-torii/60 hover:text-torii-400;
+  }
+
+  .input {
+    @apply w-full rounded-lg border border-washi-50/15 bg-sumi-800 px-3.5 py-2.5 text-sm text-washi-50 placeholder-washi-50/40 outline-none transition-colors focus:border-torii/70 focus:ring-1 focus:ring-torii/40;
+  }
+
+  .label {
+    @apply mb-1.5 block text-xs font-medium uppercase tracking-wider text-washi-50/60;
+  }
+
+  .chip {
+    @apply inline-flex items-center rounded-full border border-washi-50/15 bg-sumi-800 px-2.5 py-0.5 text-xs text-washi-100;
+  }
+
+  .heading-display {
+    @apply font-display font-bold tracking-tight;
+  }
+
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+  }
+}
+
+@layer utilities {
+  .sakura-petal {
+    position: fixed;
+    top: -10vh;
+    pointer-events: none;
+    user-select: none;
+    z-index: 1;
+    animation-name: petal-fall;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform, opacity;
+  }
+
+  .katana-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: rgba(250, 246, 238, 0.35);
+  }
+  .katana-divider::before,
+  .katana-divider::after {
+    content: "";
+    height: 1px;
+    flex: 1;
+    background: linear-gradient(
+      to var(--dir, right),
+      transparent,
+      rgba(212, 59, 42, 0.5),
+      transparent
+    );
+  }
+}
+
+@keyframes petal-fall {
+  0% {
+    transform: translateY(-10vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) translateX(8vw) rotate(320deg);
+    opacity: 0.5;
+  }
+}
